@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1006061029983",
+    "project_id": "practicum-booksam-ai-9909",
+    "storage_bucket": "practicum-booksam-ai-9909.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1006061029983:android:4559403842f371fe9f69ea",
+        "android_client_info": {
+          "package_name": "com.example.buksam_flutter_practicum"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARrUiN1rrnct-uD3D_HfwsCclpivn85xY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
