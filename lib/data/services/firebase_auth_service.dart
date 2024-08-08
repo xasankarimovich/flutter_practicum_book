@@ -1,5 +1,4 @@
 import 'package:buksam_flutter_practicum/data/models/network_response.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class FirebaseAuthService {

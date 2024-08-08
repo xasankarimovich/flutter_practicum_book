@@ -7,7 +7,6 @@ import 'package:buksam_flutter_practicum/logic/blocs/user_bloc/user_bloc.dart';
 import 'package:buksam_flutter_practicum/ui/widgets/global_loading_button.dart';
 import 'package:buksam_flutter_practicum/ui/widgets/tab_box_Widget.dart';
 import 'package:buksam_flutter_practicum/utils/extension/extension.dart';
-import 'package:buksam_flutter_practicum/utils/style/app_text_style.dart';
 import 'package:buksam_flutter_practicum/utils/ui_utils/ui_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,10 +15,8 @@ import '../../../logic/blocs/user_bloc/user_event.dart';
 import '../../widgets/glass_container_widget.dart';
 import '../vedio.dart';
 import 'login_screen.dart';
-
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
-
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
 }
@@ -42,7 +39,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
-          VideoPlayerScreen(),
+          const VideoPlayerScreen(),
           const GlassContainerWidget(),
           Form(
             key: _formKey,

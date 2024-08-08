@@ -1,8 +1,5 @@
 import 'package:buksam_flutter_practicum/ui/screens/login/login_screen.dart';
 import 'package:flutter/material.dart';
-
-import '../ui/screens/main_screen.dart';
-
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 

@@ -2,12 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:buksam_flutter_practicum/data/models/forum_status/form_status.dart';
 import 'package:buksam_flutter_practicum/data/models/network_response.dart';
 import 'package:buksam_flutter_practicum/data/services/services_locator.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-
 import '../../../data/services/firebase_auth_service.dart';
 import 'auth_event.dart';
 import 'auth_state.dart';
-
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   AuthBloc() : super(AuthState.initialValue()) {
