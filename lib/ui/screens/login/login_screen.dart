@@ -10,7 +10,7 @@ import 'package:buksam_flutter_practicum/utils/ui_utils/ui_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import '../../../utils/style/app_text_style.dart';
 import '../../widgets/glass_container_widget.dart';
 import '../vedio.dart';
 
@@ -29,150 +29,138 @@ class _LoginScreenState extends State<LoginScreen> {
 
   bool isEmailFocused = false;
   bool isPasswordFocused = false;
-  bool isScreen = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
-      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
-          const VideoPlayerScreen(),
+          VideoPlayerScreen(),
           const GlassContainerWidget(),
-          Form(
-            key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Focus(
-                  onFocusChange: (hasFocus) {
-                    setState(() {
-                      isEmailFocused = hasFocus;
-                    });
-                  },
-                  child: TextFormField(
-                    controller: _emailController,
-                    decoration: InputDecoration(
-                      labelText: 'Email',
-                      prefixIcon: Icon(Icons.email),
-                      filled: true,
-                      fillColor: Colors.white,
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Iltimos, email kiriting';
-                      }
-                      if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
-                        return 'Email noto‘g‘ri formatda';
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-                10.boxH(),
-                Focus(
-                  onFocusChange: (hasFocus) {
-                    setState(() {
-                      isPasswordFocused = hasFocus;
-                    });
-                  },
-                  child: TextFormField(
-                    controller: _passwordController,
-                    decoration: const InputDecoration(
-                      labelText: 'Parol',
-                      prefixIcon: Icon(Icons.lock),
-                      filled: true,
-                      fillColor: Colors.white,
-                    ),
-                    obscureText: true,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Iltimos, parol kiriting';
-                      }
-                      if (value.length < 6) {
-                        return 'Parol kamida 6 ta belgidan iborat bo‘lishi kerak';
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-                20.boxH(),
-                BlocConsumer<AuthBloc, AuthState>(
-                  builder: (BuildContext context, AuthState state) {
-                    return GlobalLoadingButton(
-                      title: "Login",
-                      onTap: () {
-                        if (_formKey.currentState!.validate()) {
-                          context.read<AuthBloc>().add(
-                                LoginRequested(
-                                  _emailController.text,
-                                  _passwordController.text,
-                                ),
-                              );
-                        }
+          // const GlassContainerWidget(),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Focus(
+                      onFocusChange: (hasFocus) {
+                        setState(
+                          () {
+                            isEmailFocused = hasFocus;
+                          },
+                        );
                       },
-                      isLoading: state.status == ForumStatus.loading ||
-                          state.status == ForumStatus.success,
-                    );
-                  },
-                  listenWhen: (oldState, currentState) =>
-                      currentState.status == ForumStatus.error ||
-                      currentState.status == ForumStatus.success,
-                  listener: (BuildContext context, AuthState state) {
-                    if (state.status == ForumStatus.success) {
-                      Navigator.pushReplacement(context,
-                          CupertinoPageRoute(builder: (_) => TabBoxScreen()));
-                    }
-                    if (state.status == ForumStatus.error) {
-                      showErrorMessage(
-                        message: state.errorMessage,
-                        context: context,
-                        onTap: () {
-                          context.read<AuthBloc>().add(InitialEvent());
-                          Navigator.pop(context);
-                        },
-                      );
-                    }
-                  },
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      PageRouteBuilder(
-                        pageBuilder: (context, animation, secondaryAnimation) =>
-                            Stack(
-                          children: [
-                            const GlassContainerWidget(),
-                            FadeTransition(
-                              opacity: animation,
-                              child: const RegisterScreen(),
-                            ),
-                          ],
+                      child: TextFormField(
+                        controller: _emailController,
+                        decoration: const InputDecoration(
+                          labelText: 'Email',
+                          prefixIcon: Icon(Icons.email),
+                          filled: true,
+                          fillColor: Colors.white,
                         ),
-                        transitionsBuilder:
-                            (context, animation, secondaryAnimation, child) {
-                          const begin = Offset(1.0, 0.0);
-                          const end = Offset.zero;
-                          const curve = Curves.easeInOut;
-
-                          var tween = Tween(begin: begin, end: end)
-                              .chain(CurveTween(curve: curve));
-                          var offsetAnimation = animation.drive(tween);
-
-                          return SlideTransition(
-                            position: offsetAnimation,
-                            child: child,
-                          );
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Iltimos, email kiriting';
+                          }
+                          if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+                            return 'Email noto‘g‘ri formatda';
+                          }
+                          return null;
                         },
                       ),
-                    );
-                  },
-                  child: const Text('Register'),
-                ),
-              ],
-            ),
+                    ),
+                    10.boxH(),
+                    Focus(
+                      onFocusChange: (hasFocus) {
+                        setState(() {
+                          isPasswordFocused = hasFocus;
+                        });
+                      },
+                      child: TextFormField(
+                        controller: _passwordController,
+                        decoration: const InputDecoration(
+                          labelText: 'Parol',
+                          prefixIcon: Icon(Icons.lock),
+                          filled: true,
+                          fillColor: Colors.white,
+                        ),
+                        obscureText: true,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Iltimos, parol kiriting';
+                          }
+                          if (value.length < 6) {
+                            return 'Parol kamida 6 ta belgidan iborat bo‘lishi kerak';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                    20.boxH(),
+                    BlocConsumer<AuthBloc, AuthState>(
+                      builder: (BuildContext context, AuthState state) {
+                        return GlobalLoadingButton(
+                          title: "Login",
+                          onTap: () {
+                            if (_formKey.currentState!.validate()) {
+                              context.read<AuthBloc>().add(
+                                    LoginRequested(
+                                      _emailController.text,
+                                      _passwordController.text,
+                                    ),
+                                  );
+                            }
+                          },
+                          isLoading: state.status == ForumStatus.loading ||
+                              state.status == ForumStatus.success,
+                        );
+                      },
+                      listenWhen: (oldState, currentState) =>
+                          currentState.status == ForumStatus.error ||
+                          currentState.status == ForumStatus.success,
+                      listener: (BuildContext context, AuthState state) {
+                        if (state.status == ForumStatus.success) {
+                          Navigator.pushReplacement(
+                              context,
+                              CupertinoPageRoute(
+                                  builder: (_) => TabBoxScreen()));
+                        }
+                        if (state.status == ForumStatus.error) {
+                          showErrorMessage(
+                            message: state.errorMessage,
+                            context: context,
+                            onTap: () {
+                              context.read<AuthBloc>().add(InitialEvent());
+                              Navigator.pop(context);
+                            },
+                          );
+                        }
+                      },
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (ctx) {
+                              return RegisterScreen();
+                            },
+                          ),
+                        );
+                      },
+                      child: Text(
+                        'Register',
+                        style: AppTextStyle.medium.copyWith(
+                          color: Colors.white,
+                          fontSize: 24.h,
+                        ),
+                      ),
+                    ),
+                  ],
+                )),
           )
         ],
       ),
