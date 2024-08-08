@@ -1,5 +1,6 @@
 import 'package:buksam_flutter_practicum/ui/screens/login/login_screen.dart';
 import 'package:flutter/material.dart';
+
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
@@ -9,7 +10,7 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
         colorSchemeSeed: Colors.amber,
       ),
-      home: LoginScreen()
+      home: const LoginScreen(),
     );
   }
 }

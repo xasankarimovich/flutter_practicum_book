@@ -5,8 +5,8 @@ import 'package:buksam_flutter_practicum/data/services/services_locator.dart';
 import '../../../data/services/firebase_auth_service.dart';
 import 'auth_event.dart';
 import 'auth_state.dart';
-class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
+class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc() : super(AuthState.initialValue()) {
     on<LoginRequested>(_onLoginRequested);
     on<RegisterRequested>(_onRegisterRequested);
@@ -78,5 +78,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
   }
 
-  void initialState(InitialEvent event, Emitter<AuthState> emit)=>emit(AuthState.initialValue());
+  void initialState(InitialEvent event, Emitter<AuthState> emit) =>
+      emit(AuthState.initialValue());
 }

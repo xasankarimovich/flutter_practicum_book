@@ -65,9 +65,17 @@ class SummaryScreen extends StatelessWidget {
                               context.read<BooksBloc>().add(
                                     AddBookEvent(state.book),
                                   );
-                              Navigator.pushReplacement(context, CupertinoPageRoute(builder: (ctx){
-                                return const SavedBooksScreen();
-                              },),);
+                              Navigator.pushReplacement(
+                                context,
+                                CupertinoPageRoute(
+                                  builder: (ctx) {
+                                    return const SavedBooksScreen();
+                                  },
+                                ),
+                              );
+                              context
+                                  .read<BooksBloc>()
+                                  .add(AddBookEvent(state.book));
                             },
                             style: FilledButton.styleFrom(
                               backgroundColor: Colors.green,

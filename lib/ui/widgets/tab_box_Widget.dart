@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 import '../screens/profile_screen/profile_screen.dart';
 
-
 class TabBoxScreen extends StatefulWidget {
   @override
   _TabBoxScreenState createState() => _TabBoxScreenState();
@@ -19,6 +18,7 @@ class _TabBoxScreenState extends State<TabBoxScreen> {
     Center(child: Text("1")),
     Center(child: Text("2")),
     ProfileScreen(),
+    Center(child: Text("3"))
   ];
 
   @override
@@ -42,7 +42,6 @@ class _TabBoxScreenState extends State<TabBoxScreen> {
             _selectedIndex = index;
           }),
           items: [
-
             FlashyTabBarItem(
               icon: Icon(Icons.home),
               title: Text('Home'),
@@ -52,19 +51,16 @@ class _TabBoxScreenState extends State<TabBoxScreen> {
               icon: Icon(Icons.search),
               title: Text('Search'),
               activeColor: Colors.lightBlue,
-
             ),
             FlashyTabBarItem(
               icon: Icon(Icons.question_mark),
               title: Text('Help'),
               activeColor: Colors.lightBlue,
-
             ),
             FlashyTabBarItem(
               icon: Icon(Icons.settings),
               title: Text('Profile'),
               activeColor: Colors.lightBlue,
-
             ),
           ],
         ),

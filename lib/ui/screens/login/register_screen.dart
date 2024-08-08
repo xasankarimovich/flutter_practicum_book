@@ -7,6 +7,7 @@ import 'package:buksam_flutter_practicum/logic/blocs/user_bloc/user_bloc.dart';
 import 'package:buksam_flutter_practicum/ui/widgets/global_loading_button.dart';
 import 'package:buksam_flutter_practicum/ui/widgets/tab_box_Widget.dart';
 import 'package:buksam_flutter_practicum/utils/extension/extension.dart';
+import 'package:buksam_flutter_practicum/utils/style/app_text_style.dart';
 import 'package:buksam_flutter_practicum/utils/ui_utils/ui_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ import '../../../logic/blocs/user_bloc/user_event.dart';
 import '../../widgets/glass_container_widget.dart';
 import '../vedio.dart';
 import 'login_screen.dart';
+
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
   @override
@@ -180,37 +182,42 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 TextButton(
                   onPressed: () {
                     Navigator.push(
-                      context,
-                      PageRouteBuilder(
-                        pageBuilder: (context, animation, secondaryAnimation) =>
-                            Stack(
-                          children: [
-                            const GlassContainerWidget(),
-                            FadeTransition(
-                              opacity: animation,
-                              child: const LoginScreen(),
-                            ),
-                          ],
-                        ),
-                        transitionsBuilder:
-                            (context, animation, secondaryAnimation, child) {
-                          const begin = Offset(1.0, 0.0);
-                          const end = Offset.zero;
-                          const curve = Curves.easeInOut;
+                        context,
+                        PageRouteBuilder(
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) =>
+                                    Stack(
+                                      children: [
+                                        const GlassContainerWidget(),
+                                        FadeTransition(
+                                          opacity: animation,
+                                          child: const LoginScreen(),
+                                        ),
+                                      ],
+                                    ),
+                            transitionsBuilder: (context, animation,
+                                secondaryAnimation, child) {
+                              const begin = Offset(1.0, 0.0);
+                              const end = Offset.zero;
+                              const curve = Curves.easeInOut;
 
-                          var tween = Tween(begin: begin, end: end)
-                              .chain(CurveTween(curve: curve));
-                          var offsetAnimation = animation.drive(tween);
+                              var tween = Tween(begin: begin, end: end)
+                                  .chain(CurveTween(curve: curve));
+                              var offsetAnimation = animation.drive(tween);
 
-                          return SlideTransition(
-                            position: offsetAnimation,
-                            child: child,
-                          );
-                        },
-                      ),
-                    );
+                              return SlideTransition(
+                                position: offsetAnimation,
+                                child: child,
+                              );
+                            }));
                   },
-                  child: const Text('Login'),
+                  child: Text(
+                    'Login',
+                    style: AppTextStyle.medium.copyWith(
+                      color: Colors.white,
+                      fontSize: 24.h,
+                    ),
+                  ),
                 ),
               ],
             ),
